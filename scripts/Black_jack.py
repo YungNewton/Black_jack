@@ -16,6 +16,8 @@ cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'king', 'queen', 'jack', 'ace', ]
 your_cards = []
 computers_cards = []
 sum_cards = []
+sum_computer = []
+computerTotal = 0
 for i in range(2):
     your_cards.append(random.choice(cards))
     computers_cards.append(random.choice(cards))
@@ -35,9 +37,24 @@ print()
 print(f"Computers cards : {computers_cards}")
 for i in your_cards:
     sum_cards.append(i)
+for i in computers_cards:
+    if i != 'ace':
+        sum_computer.append(i)
 for i in sum_cards:
     if i == 'king' or i == 'queen' or i == 'jack':
         sum_cards[sum_cards.index(i)] = 10
+for i in computers_cards:
+    if i == 'king' or i == 'queen' or i == 'jack':
+        sum_computer[sum_computer.index(i)] = 10
+for i in sum_computer:
+    computerTotal = computerTotal + i
+if 'ace' in computers_cards:
+    if (computerTotal + 11) > 21:
+        computerTotal = computerTotal + 1
+        print("Computer says it's Ace takes the value 1")
+    else:
+        computerTotal = computerTotal + 11
+        print("Computer says is Ace takes the value 11")
 print()
 print(f'your cards : {your_cards}')
 
