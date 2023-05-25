@@ -19,6 +19,7 @@ sum_cards = []
 sum_computer = []
 computerTotal = 0
 yourTotal = 0
+counter = 0
 for i in range(2):
     your_cards.append(random.choice(cards))
     computers_cards.append(random.choice(cards))
@@ -31,13 +32,15 @@ pickAgain = input("Enter 'y' to risk picking another card, enter 'n' to pass: ")
 print("")
 if pickAgain.lower() == 'y':
     your_cards.append(random.choice(cards))
-    print(f'you picked a {your_cards[len(your_cards)-1]}')
+    print(f'you picked a {your_cards[len(your_cards)-1]} card')
     time.sleep(1)
 print()
 print(f"Computers cards : {computers_cards}\n")
 time.sleep(1.5)
 print(f'your cards : {your_cards}\n')
 for i in your_cards:
+    if i == 'ace':
+        counter+= 1
     sum_cards.append(i)
 for i in computers_cards:
     if i != 'ace':
@@ -50,15 +53,17 @@ for i in computers_cards:
         sum_computer[sum_computer.index(i)] = 10
 for i in sum_computer:
     computerTotal = computerTotal + i
-if 'ace' in computers_cards:
-    if (computerTotal + 11) > 21:
-        computerTotal = computerTotal + 1
-        print("Computer says it's Ace takes the value 1")
-    else:
-        computerTotal = computerTotal + 11
-        print("Computer says is Ace takes the value 11")
 if 'ace' in your_cards:
-    print("What value would your ace take")
+    for i in sum_cards:
+        yourTotal = yourTotal + i
+    for d in range(counter):
+        print(f"you have {counter} ace cards\n")
+        time.sleep(2)
+        if d < 3:
+            value = int(input(f"What value do you want for {d}'st ace card"))
+        else:
+            value = int(input(f"What value do you want for {d}'rd ace card"))
+            yourTotal = yourTotal + value
 else:
     for i in sum_cards:
         yourTotal = yourTotal + i
@@ -66,6 +71,13 @@ if yourTotal > 21:
     print("BUST!!")
     print("You lost.")
 else:
+    if 'ace' in computers_cards:
+        if (computerTotal + 11) > 21:
+            computerTotal = computerTotal + 1
+            print("Computer says it's Ace takes the value 1")
+        else:
+            computerTotal = computerTotal + 11
+            print("Computer says it's Ace takes the value 11")
     if computerTotal < 17:
         print("computers total is less than 17 it has to pick again\n")
         computers_printable_card.append(random.choice(cards))
