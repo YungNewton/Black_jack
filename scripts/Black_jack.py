@@ -28,8 +28,12 @@ print("\n")
 print(f"your cards : {your_cards}\n")
 print(f"computers cards : {computers_printable_card}\n")
 time.sleep(1)
-pickAgain = input("Enter 'y' to risk picking another card, enter 'n' to pass: ")
-print()
+shouldRepeat = True
+while shouldRepeat:
+    pickAgain = input("Enter 'y' to risk picking another card, enter 'n' to pass: ")
+    if pickAgain.lower() == 'y' or pickAgain.lower() == 'n':
+        shouldRepeat = False
+    print()
 if pickAgain.lower() == 'y':
     your_cards.append(random.choice(cards))
     print(f'you picked a {your_cards[len(your_cards)-1]} card\n')
