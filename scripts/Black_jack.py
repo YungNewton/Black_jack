@@ -15,10 +15,11 @@ print('''
 cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'king', 'queen', 'jack', 'ace', ]
 your_cards = []
 computers_cards = []
+sum_cards = []
 for i in range(2):
     your_cards.append(random.choice(cards))
     computers_cards.append(random.choice(cards))
-computers_printable_card = ['*', computers_cards[0]]
+computers_printable_card = ['hidden', computers_cards[0]]
 print("\n")
 print(f"your cards : {your_cards}")
 print()
@@ -26,5 +27,18 @@ print(f"computers cards : {computers_printable_card}")
 time.sleep(1)
 print()
 pickAgain = input("Enter 'y' to risk picking another card, enter 'n' to pass: ")
+print()
+if pickAgain.lower() == 'y':
+    your_cards.append(random.choice(cards))
+    print(f'you picked a {your_cards[len(your_cards)-1]}')
+print()
+print(f"Computers cards : {computers_cards}")
+for i in your_cards:
+    sum_cards.append(i)
+for i in sum_cards:
+    if i == 'king' or i == 'queen' or i == 'jack':
+        sum_cards[sum_cards.index(i)] = 10
+print()
+print(f'your cards : {your_cards}')
 
 
