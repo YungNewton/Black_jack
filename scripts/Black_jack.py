@@ -18,6 +18,7 @@ computers_cards = []
 sum_cards = []
 sum_computer = []
 computerTotal = 0
+yourTotal = 0
 for i in range(2):
     your_cards.append(random.choice(cards))
     computers_cards.append(random.choice(cards))
@@ -35,6 +36,9 @@ if pickAgain.lower() == 'y':
     print(f'you picked a {your_cards[len(your_cards)-1]}')
 print()
 print(f"Computers cards : {computers_cards}")
+print()
+print(f'your cards : {your_cards}')
+print()
 for i in your_cards:
     sum_cards.append(i)
 for i in computers_cards:
@@ -55,7 +59,13 @@ if 'ace' in computers_cards:
     else:
         computerTotal = computerTotal + 11
         print("Computer says is Ace takes the value 11")
-print()
-print(f'your cards : {your_cards}')
+if 'ace' in your_cards:
+    print("What value would your ace take")
+else:
+    for i in sum_cards:
+        yourTotal = yourTotal + i
+if yourTotal > 21:
+    print("BUST!!")
+    print("You lost.")
 
 
