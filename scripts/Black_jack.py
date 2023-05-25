@@ -1,10 +1,11 @@
 import random
+import time
 
 print('''
-Yb        dP 888888 88      dP""b8  dP"Yb  8b    d8 888888  
- Yb  db  dP  88__   88     dP   `" dP   Yb 88b  d88 88__          
-  YbdPYbdP   88""   88  .o Yb      Yb   dP 88YbdP88 88""          
-   YP  YP    888888 88ood8  YboodP  YbodP  88 YY 88 888888 ''')
+                    Yb        dP 888888 88      dP""b8  dP"Yb  8b    d8 888888  
+                     Yb  db  dP  88__   88     dP   `" dP   Yb 88b  d88 88__          
+                      YbdPYbdP   88""   88  .o Yb      Yb   dP 88YbdP88 88""          
+                       YP  YP    888888 88ood8  YboodP  YbodP  88 YY 88 888888 ''')
 print('''
       888888  dP"Yb      88""Yb 88        db     dP""b8 88  dP  88888    db     dP""b8 88  dP 
         88   dP   Yb     88__dP 88       dPYb   dP   `" 88odP      88   dPYb   dP   `" 88odP  
@@ -13,6 +14,17 @@ print('''
 
 cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'king', 'queen', 'jack', 'ace', ]
 your_cards = []
+computers_cards = []
 for i in range(2):
     your_cards.append(random.choice(cards))
-print(your_cards)
+    computers_cards.append(random.choice(cards))
+computers_printable_card = ['*', computers_cards[0]]
+print("\n")
+print(f"your cards : {your_cards}")
+print()
+print(f"computers cards : {computers_printable_card}")
+time.sleep(1)
+print()
+pickAgain = input("Enter 'y' to risk picking another card, enter 'n' to pass: ")
+
+
