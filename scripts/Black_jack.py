@@ -24,21 +24,19 @@ for i in range(2):
     computers_cards.append(random.choice(cards))
 computers_printable_card = ['hidden', computers_cards[0]]
 print("\n")
-print(f"your cards : {your_cards}")
-print()
-print(f"computers cards : {computers_printable_card}")
+print(f"your cards : {your_cards}\n")
+print(f"computers cards : {computers_printable_card}\n")
 time.sleep(1)
-print()
 pickAgain = input("Enter 'y' to risk picking another card, enter 'n' to pass: ")
-print()
+print("")
 if pickAgain.lower() == 'y':
     your_cards.append(random.choice(cards))
     print(f'you picked a {your_cards[len(your_cards)-1]}')
+    time.sleep(1)
 print()
-print(f"Computers cards : {computers_cards}")
-print()
-print(f'your cards : {your_cards}')
-print()
+print(f"Computers cards : {computers_cards}\n")
+time.sleep(1.5)
+print(f'your cards : {your_cards}\n')
 for i in your_cards:
     sum_cards.append(i)
 for i in computers_cards:
@@ -67,5 +65,33 @@ else:
 if yourTotal > 21:
     print("BUST!!")
     print("You lost.")
-
+else:
+    if computerTotal < 17:
+        print("computers total is less than 17 it has to pick again\n")
+        computers_printable_card.append(random.choice(cards))
+        time.sleep(1)
+        print(f"computer picked {computers_printable_card[len(computers_printable_card)-1]}\n")
+        if computers_printable_card[len(computers_printable_card)-1] == 'king' or computers_printable_card[len(computers_printable_card)-1] == 'queen' or computers_printable_card[len(computers_printable_card)-1] == 'jack':
+            computerTotal = computerTotal + 10
+        elif computers_printable_card[len(computers_printable_card)-1] == 'ace':
+            if (computerTotal + 11) > 21:
+                computerTotal = computerTotal + 1
+                print("Computer says it's Ace takes the value 1")
+            else:
+                computerTotal = computerTotal + 11
+                print("Computer says is Ace takes the value 11")
+        else:
+            computerTotal = computerTotal + computers_printable_card[len(computers_printable_card)-1]
+    print(f'your total : {yourTotal}\n')
+    print(f'computer total : {computerTotal}\n')
+    if computerTotal > 21:
+        print('CONGRATULATIONS!! YOU WON\n')
+        print('COMPUTER BUST!!')
+    else:
+        if yourTotal > computerTotal:
+            print('CONGRATULATIONS!! YOU WON')
+        elif yourTotal < computerTotal < 22:
+            print('SORRY COMPUTER WON THIS ONE!!')
+        elif yourTotal == computerTotal:
+            print('DRAW!!!  A TIGHT ONE')
 
