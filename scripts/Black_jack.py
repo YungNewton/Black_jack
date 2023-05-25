@@ -29,19 +29,21 @@ print(f"your cards : {your_cards}\n")
 print(f"computers cards : {computers_printable_card}\n")
 time.sleep(1)
 pickAgain = input("Enter 'y' to risk picking another card, enter 'n' to pass: ")
-print("")
+print()
 if pickAgain.lower() == 'y':
     your_cards.append(random.choice(cards))
-    print(f'you picked a {your_cards[len(your_cards)-1]} card')
+    print(f'you picked a {your_cards[len(your_cards)-1]} card\n')
     time.sleep(1)
-print()
+print("", end='')
 print(f"Computers cards : {computers_cards}\n")
 time.sleep(1.5)
 print(f'your cards : {your_cards}\n')
+time.sleep(1)
 for i in your_cards:
     if i == 'ace':
-        counter+= 1
-    sum_cards.append(i)
+        counter += 1
+    if i != 'ace':
+        sum_cards.append(i)
 for i in computers_cards:
     if i != 'ace':
         sum_computer.append(i)
@@ -54,56 +56,68 @@ for i in computers_cards:
 for i in sum_computer:
     computerTotal = computerTotal + i
 if 'ace' in your_cards:
-    for i in sum_cards:
-        yourTotal = yourTotal + i
+    for e in sum_cards:
+        yourTotal = yourTotal + e
     for d in range(counter):
         print(f"you have {counter} ace cards\n")
         time.sleep(2)
         if d < 3:
-            value = int(input(f"What value do you want for {d}'st ace card"))
+            value = int(input(f"What value do you want for {d+1}'st ace card: "))
+            print("", end='')
+            yourTotal = yourTotal + value
         else:
-            value = int(input(f"What value do you want for {d}'rd ace card"))
+            value = int(input(f"What value do you want for {d+1}'rd ace card: "))
+            print("", end='')
             yourTotal = yourTotal + value
 else:
     for i in sum_cards:
         yourTotal = yourTotal + i
 if yourTotal > 21:
+    print(f'your total : {yourTotal}\n')
+    time.sleep(1)
     print("BUST!!")
-    print("You lost.")
+    print("You lost. Your total was above 21")
 else:
     if 'ace' in computers_cards:
         if (computerTotal + 11) > 21:
             computerTotal = computerTotal + 1
-            print("Computer says it's Ace takes the value 1")
+            print("Computer says it's Ace takes the value 1\n")
         else:
             computerTotal = computerTotal + 11
-            print("Computer says it's Ace takes the value 11")
+            print("Computer says it's Ace takes the value 11\n")
     if computerTotal < 17:
         print("computers total is less than 17 it has to pick again\n")
         computers_printable_card.append(random.choice(cards))
+        time.sleep(2.5)
+        print(f"computer picked a {computers_printable_card[len(computers_printable_card)-1]} card\n")
         time.sleep(1)
-        print(f"computer picked {computers_printable_card[len(computers_printable_card)-1]}\n")
         if computers_printable_card[len(computers_printable_card)-1] == 'king' or computers_printable_card[len(computers_printable_card)-1] == 'queen' or computers_printable_card[len(computers_printable_card)-1] == 'jack':
             computerTotal = computerTotal + 10
         elif computers_printable_card[len(computers_printable_card)-1] == 'ace':
             if (computerTotal + 11) > 21:
                 computerTotal = computerTotal + 1
-                print("Computer says it's Ace takes the value 1")
+                print("Computer says it's Ace takes the value 1\n")
             else:
                 computerTotal = computerTotal + 11
-                print("Computer says is Ace takes the value 11")
+                print("Computer says is Ace takes the value 11\n")
         else:
             computerTotal = computerTotal + computers_printable_card[len(computers_printable_card)-1]
     print(f'your total : {yourTotal}\n')
+    time.sleep(1)
     print(f'computer total : {computerTotal}\n')
     if computerTotal > 21:
         print('CONGRATULATIONS!! YOU WON\n')
+        time.sleep(0.5)
         print('COMPUTER BUST!!')
+        time.sleep(1)
     else:
         if yourTotal > computerTotal:
             print('CONGRATULATIONS!! YOU WON')
+            time.sleep(1)
         elif yourTotal < computerTotal < 22:
             print('SORRY COMPUTER WON THIS ONE!!')
+            time.sleep(1)
         elif yourTotal == computerTotal:
             print('DRAW!!!  A TIGHT ONE')
+            time.sleep(1)
 
