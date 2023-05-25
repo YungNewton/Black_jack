@@ -1,5 +1,4 @@
 import random
-import time
 
 print('''
 Yb        dP 888888 88      dP""b8  dP"Yb  8b    d8 888888  
@@ -11,3 +10,9 @@ print('''
         88   dP   Yb     88__dP 88       dPYb   dP   `" 88odP      88   dPYb   dP   `" 88odP  
         88   Yb   dP     88""Yb 88  .o  dP__Yb  Yb      88"Yb  o.  88  dP__Yb  Yb      88"Yb  
         88    YbodP      88oodP 88ood8 dP""""Yb  YboodP 88  Yb "bodP' dP""""Yb  YboodP 88  Yb ''')
+
+cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'king', 'queen', 'jack', 'ace', ]
+your_cards = []
+for i in range(2):
+    your_cards.append(random.choice(cards))
+print(your_cards)
